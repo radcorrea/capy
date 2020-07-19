@@ -37,7 +37,6 @@ GEM
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
     rubyzip (2.3.0)
-    rufo (0.12.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -51,7 +50,6 @@ DEPENDENCIES
   capybara (= 3.33.0)
   ffi (= 1.13.1)
   rspec (= 3.9.0)
-  rufo (= 0.12.0)
   selenium-webdriver (= 3.142.7)
 
 BUNDLED WITH

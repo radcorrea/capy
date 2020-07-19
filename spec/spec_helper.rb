@@ -17,10 +17,11 @@ end
 
 Capybara.register_driver :selenium_chrome do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
+    opts.add_argument "/usr/bin/chromium-browser"
     opts.add_argument "--disable-gpu"
     opts.add_argument "--no-sandbox"
     opts.add_argument "--disable-site-isolation-trials"
-    opts.addArguments("--disable-dev-shm-usage"); 
+    opts.add_argument "--disable-dev-shm-usage"
   end
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 end
