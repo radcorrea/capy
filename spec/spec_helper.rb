@@ -13,11 +13,19 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.include Capybara::DSL
+
+  config.before(:example) do
+    page.current_window.resize_to(1280, 800)
+  end
+
+  config.after(:example) do |e|
+    nome = e.description.gsub(/[^A-Za-z0-9 ]/, '').tr(' ', '_')
+    page.save_screenshot('log/' + nome + '.png') if e.exception
+end
 end
 
 Capybara.register_driver :selenium_chrome do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
-    opts.add_argument "/usr/bin/chromium-browser"
     opts.add_argument "--disable-gpu"
     opts.add_argument "--no-sandbox"
     opts.add_argument "--disable-site-isolation-trials"
@@ -28,4 +36,6 @@ end
 
 Capybara.configure do |config|
   config.default_driver = :selenium_chrome
+  config.default_max_wait_time = 5
+  config.app_host = 'https://training-wheels-protocol.herokuapp.com/'
 end
